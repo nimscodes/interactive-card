@@ -1,56 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  <link rel="stylesheet" href="./styles/style.css">
-  
-  <title>Frontend Mentor | Interactive card details form</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="./styles/style.css" />
 
+    <title>Frontend Mentor | Interactive card details form</title>
+  </head>
+  <body>
+    <main class="container">
+      <div class="left-section bg-primary-400 text-neutral-100">
+        <div class="card-container">
+          <div class="front-card">
+            <div class="image">
+              <img src="./images/bg-card-front.png" alt="back-card" />
+            </div>
+            <div class="circle">
+              <div class="big-circle"></div>
+              <div class="small-circle"></div>
+            </div>
+            <div class="content">
+              <h5 id="card_number">0000 0000 0000 0000</h5>
+              <div class="content-ch">
+                <span id="card_holder">Jane Appleseed </span>
+                <span class="expiry_date"><span id="month">00</span>/<span id="year">00</span></span>
+              </div>
+            </div>
+          </div>  
+        </div>
+        <div class="card-container">
+          <div class="back-card">
+            <div class="image">
+              <img src="./images/bg-card-back.png" alt="back-card" />
+              <span id="span-cvv">000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right-section">
+        <form id="form" novalidate>
+          <div class="form-item">
+            <label for="cardHolder">Cardholder Name</label>
+            <input
+              type="text"
+              id="cardHolder"
+              name="cardHolder"
+              placeholder="e.g. Jane Appleseed"
+              oninput="updateLive('cardHolder','card_holder')"
+              pattern="[A-Za-z ]+" 
+              title="Please enter a valid cardholder name"
+              oninvalid="validateInput(this)"
 
-</head>
-<body>
-  <main>
-    <div>
+            />
+            <span class="error" aria-live="polite"></span>
+          </div>
+          <div class="form-item">
+            <label for="cardNumber">Card Number</label>
+            <input
+              type="text"
+              id="cardNumber"
+              name="cardNumber"
+              pattern="\d{16}"
+              minlength="16"
+              maxlength="16"
+              placeholder="e.g. 1234 5678 9123 0000"
+              oninput="formatCardNumber('cardNumber', 'card_number')"
+              title="Wrong format, numbers only"
+              oninvalid="validateInput(this)"
+              
+            />
+            <span class="error" aria-live="polite"></span>
+          </div>
 
-    </div>
-    <div>
+          <div class="form-item" id="exp-cvv">
+            <div>
+              <label for="expiryDate">Exp. Date (MM/YY)</label>
+              <div class="exp">
+                <input
+                type="text"
+                id="expiryMonth"
+                name="expiryMonth"
+                pattern="(0[1-9]|1[0-2])"
+                maxlength="2"
+                placeholder="MM"
+                oninput="updateLive('expiryMonth', 'month')"
+                title="Can't be blank"
+                oninvalid="validateInput(this)"
+            
+              />
+              
+              <input
+                type="text"
+                id="expiryYear"
+                name="expiryYear"
+                pattern="\d{2}"
+                maxlength="2"
+                placeholder="YY"
+                oninput="updateLive('expiryYear', 'year')"
+                title="Can't be blank"
+                oninvalid="validateInput(this)"
       
-    </div>
-  </main>
+              />
+              </div> 
+              <span class="error" aria-live="polite"></span>
+            </div>
 
-  0000 0000 0000 0000
-  Jane Appleseed
-  00/00
 
-  000
+            <div>
+              <label for="cvv">CVC</label>
+              <input
+                type="text"
+                id="cvv"
+                name="cvv"
+                pattern="\d{3}"
+                placeholder="e.g. 123"
+                maxlength="3"
+                oninput="updateLive('cvv', 'span-cvv')"
+                title="Can't be blank"
+                oninvalid="validateInput(this)"
+                
+              />
+              <span class="error" aria-live="polite"></span>
+            </div>
+          </div>
+          <div class="form-item">
+            <button class="confirm" type="submit">Confirm</button>
+          </div>
+        </form>
+      </div>
+    </main>
 
-  Cardholder Name
-  e.g. Jane Appleseed
-
-  Card Number
-  e.g. 1234 5678 9123 0000
-
-  Exp. Date (MM/YY)
-  MM
-  YY
-
-  CVC
-  e.g. 123
-
-  Confirm
-
-  <!-- Completed state start -->
-
-  Thank you!
+    <!-- Thank you!
   We've added your card details
   Continue
   
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+  </div> -->
+    <script src="./scripts/script.js"></script>
+  </body>
 </html>
